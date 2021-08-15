@@ -1,0 +1,70 @@
+{% load static %}
+{% load quiz_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="index.js"></script>
+    <title>Quiz App</title>
+
+
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <!-- <li><a href="index.html"><i class="fa fa-home"></i></a></li> -->
+            <li id="subject">Resultados</li>
+        </ul>
+    </nav>
+    {% if max_score %}
+    <div class="heading2">
+        <p>Correctas: {{ score }} preguntas correctamente de {{ max_score }}</p>
+    </div>
+    <!-- here is rounded percentage box -->
+    <div class="box">
+        <div class="percent">
+            <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+                <circle cx="70" cy="70" r="70"></circle>
+            </svg>
+            <div class="number">
+                <h2>{{ percent }}<span>%</span></h2>
+            </div>
+        </div>
+
+    </div>
+    {% endif %}
+
+    <!-- Question box -->
+    <div class="question-box">
+        {% if questions %}
+        {% for question in questions %}
+        <h1 style="text-align: justify;">
+            {{ question.content }}
+        </h1>
+
+        <h3>Respuesta: {% correct_answer_for_all question %}</h3>
+
+        {% if question.user_answer %}
+        <span class="answer">Tu respuesta: {{ question|answer_choice_to_string:question.user_answer }} </span>
+
+        {% endif %}
+        <hr class="hr">
+        {% endfor %}
+        {% endif %}
+    </div>
+
+
+    <!-- Button style -->
+    <div class="btn">
+        <button onclick="location.href= 'index.html'">RETURN TO HOME</button>
+    </div>
+</body>
+
+</html>

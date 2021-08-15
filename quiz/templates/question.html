@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Quiz App</title>
+
+
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <!-- <li><a href="index.html"><i class="fa fa-home"></i></a></li> -->
+            <li id="subject">{{ question.category }}</li>
+        </ul>
+    </nav>
+    <!-- here is dot container -->
+    <div class="dot-container" align="center">
+		{% if progress %}
+        <h3>Pregunta {{ progress.0|add:1 }} de {{ progress.1 }}</h3>
+		{% endif %}
+<!--         <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span> -->
+    </div>
+    <!-- Question box -->
+    <div class="question-box">
+        <h1 style="text-align: justify;" >
+            {{ question.content }}
+        </h1>
+		<form method="post">
+			{% csrf_token %}
+			{% for answer in form.answers %}
+			<label class="main"> 
+					{{ answer }}
+					<!-- <input type="checkbox">
+					<span class="checkmark"></span> -->
+			</label>
+			{% endfor %}
+		
+    </div>
+    <!-- Button style -->
+    <div class="btn">
+        <!-- <button onclick="location.href= 'Results.html'">
+			NEXT
+		</button> -->
+		<button type="submit" class="btn btn-large btn-block btn-warning" >
+			Submit
+		</button>
+	</form>
+    </div>
+</body>
+
+</html>

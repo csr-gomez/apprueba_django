@@ -15,5 +15,5 @@ TODO:
 - [ ] Enroll into apple dev program.
 
 TO RUN THIS APP:
-- Create a virtual env ````python3 -m venv quizenv```
+- Create a virtual env ```python3 -m venv quizenv```
 - Install the requirements ```pip install -r requirements.txt```

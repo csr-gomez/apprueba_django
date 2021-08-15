@@ -18,4 +18,4 @@ TO RUN THIS APP:
 - Create a virtual env ```python3 -m venv quizenv```
 - Install the requirements ```pip install -r requirements.txt```
 - Make the migrations ```python manage.py migrate```
-- Run the server ```python manage.py runserver
+- Run the server ```python manage.py runserver```

@@ -68,7 +68,7 @@ class SubCategoryAdmin(admin.ModelAdmin):
 class MCQuestionAdmin(admin.ModelAdmin):
     list_display = ('content', 'category', )
     list_filter = ('category',)
-    fields = ('content', 'category', 'sub_category',
+    fields = ('content', 'instructions', 'category', 'sub_category',
               'figure', 'quiz', 'explanation', 'answer_order')
 
     search_fields = ('content', 'explanation')
@@ -88,7 +88,7 @@ class ProgressAdmin(admin.ModelAdmin):
 class TFQuestionAdmin(admin.ModelAdmin):
     list_display = ('content', 'category', )
     list_filter = ('category',)
-    fields = ('content', 'category', 'sub_category',
+    fields = ('content', 'instructions', 'category', 'sub_category',
               'figure', 'quiz', 'explanation', 'correct',)
 
     search_fields = ('content', 'explanation')
@@ -101,6 +101,7 @@ class EssayQuestionAdmin(admin.ModelAdmin):
     fields = ('content', 'category', 'sub_category', 'quiz', 'explanation', )
     search_fields = ('content', 'explanation')
     filter_horizontal = ('quiz',)
+
 
 admin.site.register(Quiz, QuizAdmin)
 admin.site.register(Category, CategoryAdmin)

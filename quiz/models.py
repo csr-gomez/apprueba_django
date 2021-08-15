@@ -188,7 +188,8 @@ class Progress(models.Model):
     Data stored in csv using the format:
         category, score, possible, category, score, possible, ...
     """
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, verbose_name=_("User"), on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL, verbose_name=_("User"), on_delete=models.CASCADE)
 
     score = models.CharField(max_length=1024,
                              verbose_name=_("Score"),
@@ -336,7 +337,7 @@ class SittingManager(models.Manager):
         if quiz.single_attempt is True and self.filter(user=user,
                                                        quiz=quiz,
                                                        complete=True)\
-                                               .exists():
+                .exists():
             return False
 
         try:
@@ -367,9 +368,11 @@ class Sitting(models.Model):
     with the answer the user gave.
     """
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_("User"), on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             verbose_name=_("User"), on_delete=models.CASCADE)
 
-    quiz = models.ForeignKey(Quiz, verbose_name=_("Quiz"), on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, verbose_name=_(
+        "Quiz"), on_delete=models.CASCADE)
 
     question_order = models.CharField(
         max_length=1024,
@@ -564,8 +567,12 @@ class Question(models.Model):
                                null=True,
                                verbose_name=_("Figure"))
 
-    content = models.CharField(max_length=1000,
-                               blank=False,
+    instructions = models.CharField(max_length=1000, blank=True,
+                                    help_text=_(
+                                        "Enter instructions for the question"),
+                                    verbose_name=_('Instructions'))
+
+    content = models.TextField(blank=False,
                                help_text=_("Enter the question text that "
                                            "you want displayed"),
                                verbose_name=_('Question'))
